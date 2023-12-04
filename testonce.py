@@ -6,6 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+'''
+这段只是我刚开始摸索用的单条测试（可以不用看）
+'''
+
 # 创建一个新的 WebDriver 对象
 chrome_driver_path = r'D:\py\chromedriver-win64\chromedriver.exe'
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
