@@ -9,10 +9,10 @@ LOL台服拳头直营服账号批量注册（半自动）
 
 
 使用方法：
-        1. 注册N多个邮箱（略）
-        2. 执行prerandom.py生成300个随机资料
-        3. 将上述生成的generated_data_updated_text_format.xlsx资料填写到account.xlsx对应位置中，包括自己的N多个邮箱
-        4. 执行autosignin.py，（安装缺失的模块，缺失chromedriver，指定自己本机的路径），测试运行
-        5. 如果上述已经完成了的话，还是觉得效果太慢，可以使用moretread.py双线程执行
+1. 注册N多个邮箱（略）
+2. 执行prerandom.py生成300个随机资料
+3. 将上述生成的generated_data_updated_text_format.xlsx资料填写到account.xlsx对应位置中，包括自己的N多个邮箱
+4. 执行autosignin.py，（安装缺失的模块，缺失chromedriver，指定自己本机的路径），测试运行
+5. 如果上述已经完成了的话，还是觉得效果太慢，可以使用moretread.py双线程执行
 
 注册完之后就可以刷等级买罐子送皮肤啦
