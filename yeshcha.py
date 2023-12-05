@@ -21,10 +21,9 @@ for index, row in df.iterrows():
     start_time = time.time()
 
     # 每次创建一个新的 WebDriver 对象
-    chrome_driver_path = r'C:\Users\Benjamin\PycharmProjects\pythonProject1\autoaccount_1205\autoaccount\chromedriver-win64\chromedriver.exe'
+    chrome_driver_path = r'C:\Users\Benjamin\PycharmProjects\pythonProject1\autoaccount_1205\autoaccount\chromedriver-win64\chromedriver.exe' # 这里需要填写自己本机的chromedriver路径
     options = webdriver.ChromeOptions()
-    options.add_argument("--user-data-dir=" + r"C:/Users/Benjamin/AppData/Local/Google/Chrome/User Data")
-    # options.add_argument(f"--user-data-dir={user_data_dir}")  # 设置成用户自己的数据目录
+    options.add_argument("--user-data-dir=" + r"C:/Users/Benjamin/AppData/Local/Google/Chrome/User Data")  # 获取本地浏览器的插件等信息，chrome://version/查看个人资料路径，执行前关闭所有浏览器
     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
     # 打开注册的网址,这个拳头网址第一次要手动去页面拉取下，会过期
     url = "https://auth.riotgames.com/login#_gl=1%2A1r2mlj1%2A_ga%2AMjE5MTc5MDg3LjE3MDE3NTA2Mzg.%2A_ga_0X9JWXB87B%2AMTcwMTc1MDYzNy4xLjEuMTcwMTc1MDcyOC4wLjAuMA..&acr_values=urn%3Ariot%3Agold&client_id=accountodactyl-prod&prompt=signup&redirect_uri=https%3A%2F%2Faccount.riotgames.com%2Foauth2%2Flog-in&response_type=code&scope=openid%20email%20profile%20riot%3A%2F%2Friot.atlas%2Faccounts.edit%20riot%3A%2F%2Friot.atlas%2Faccounts%2Fpassword.edit%20riot%3A%2F%2Friot.atlas%2Faccounts%2Femail.edit%20riot%3A%2F%2Friot.atlas%2Faccounts.auth%20riot%3A%2F%2Fthird_party.revoke%20riot%3A%2F%2Fthird_party.query%20riot%3A%2F%2Fforgetme%2Fnotify.write%20riot%3A%2F%2Friot.authenticator%2Fauth.code%20riot%3A%2F%2Friot.authenticator%2Fauthz.edit%20riot%3A%2F%2Frso%2Fmfa%2Fdevice.write%20riot%3A%2F%2Friot.authenticator%2Fidentity.add&state=b2ebc778-8000-4a61-bcdb-8bea3a88290c&ui_locales=zh-MY"
@@ -46,8 +45,7 @@ for index, row in df.iterrows():
     email_input = driver.find_element(By.CSS_SELECTOR, 'input[type="email"]')
     email_input.clear()
     # 输入邮箱地址并按回车
-    email_input.send_keys(email)
-    # time.sleep(2)
+    email_input.send_keys(email) 
     email_input.send_keys(Keys.RETURN)
 
     # 等待日输入框加载完成
@@ -106,7 +104,7 @@ for index, row in df.iterrows():
     timeout = 20
     max_attempts = 10
 
-    # 这一步每次会存在图像验证
+    # 这一步每次会存在图像验证，这个验证器质量一般，以后找见好的再说
     # 计数器
     attempts = 0
 
@@ -127,6 +125,7 @@ for index, row in df.iterrows():
             # 如果在15秒内未跳转到目标URL，继续下一步
             print(f"第 {attempts + 1} 次等待超时，再次点击下一步按钮...")
 
+            # 可能会存在重复用户名的情况，这里后面随便加点后缀就行啦
             try:
                 # 查找页面元素，检测是否包含 '用户名必须独一无二'
                 page_source = driver.page_source
@@ -156,11 +155,7 @@ for index, row in df.iterrows():
         else:
             print("达到最大尝试次数，未成功跳转到目标URL。")
 
-    # 这一步可能会提示重复用户名，手动随便加个后缀吧
-
-
     # 等待 Riot ID 输入框加载完成
-    # WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[data-testid="riot-id__riotId"]')))
     WebDriverWait(driver, 360).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'input[data-testid="riot-id__riotId"]')))
 
     # 找到 Riot ID 输入框
@@ -187,8 +182,6 @@ for index, row in df.iterrows():
     # 显式等待页面加载完成，例如等待 Riot ID 输入框可见
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[data-testid="riot-id__riotId"]')))
 
-    # time.sleep(1)   # 我怕看不清
-
     # 获取当前行的数据
     current_row_data = {
         'Email': email,
@@ -210,6 +203,8 @@ for index, row in df.iterrows():
 
     time.sleep(3)
 
+    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
     # 关闭浏览器后，开始下一轮循环
     driver.quit()
-    print("-----------------------------------------------------------------------------------------------------------------------------------------------------")
+    
+    
