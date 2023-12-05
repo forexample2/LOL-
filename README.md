@@ -1,18 +1,18 @@
 # LOL台服拳头直营服账号批量注册
 
-LOL台服拳头直营服账号批量注册（半自动）
+LOL台服拳头直营服账号批量注册
 1. 前提需要大量的邮箱，可以某宝买到，或者用注册机自己注册
 2. 还需要前置批量生成随机资料到excel，代码见另一个文件
 3. 大陆应该需要梯子
-4. 不足之处就是每次输入密码后，需要手工验证图像验证码（当然是为了省钱啦）
-        算上网页加载实际注册一个大于需要30来秒，双线程的话一分钟大概能注册4个左右
+4. 算上网页加载实际注册一个大于需要30来秒
 
 
 使用方法：
 1. 注册N多个邮箱（略）
 2. 执行prerandom.py生成300个随机资料
 3. 将上述生成的generated_data_updated_text_format.xlsx资料填写到account.xlsx对应位置中，包括自己的N多个邮箱
-4. 执行autosignin.py，（安装缺失的模块，缺失chromedriver，指定自己本机的路径），测试运行
-5. 如果上述已经完成了的话，还是觉得效果太慢，可以使用moretread.py双线程执行
+4. 注册https://yescaptcha.com/i/1Trl4h， 跟客服要测试的1500点数， chrome浏览器安装https://chromewebstore.google.com/detail/yescaptcha-%E4%BA%BA%E6%9C%BA%E5%8A%A9%E6%89%8B/jiofmdifioeejeilfkpegipdjiopiekl?hl=zh-CN插件
+5. 配置填写你的ClientKey
+6. 执行yeshcha.py，（安装缺失的模块，缺失chromedriver，指定自己本机的路径），测试运行
 
 注册完之后就可以刷等级买罐子送皮肤啦
